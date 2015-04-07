@@ -1,21 +1,12 @@
 package AppliSimu;
 
-import java.awt.Color;
-import java.awt.FlowLayout;
-import java.awt.Graphics;
-import java.awt.Panel;
-import java.awt.event.ActionEvent;
-import java.awt.event.ActionListener;
-import java.util.Observable;
-import java.util.Observer;
-
-import javax.swing.JButton;
-import javax.swing.JFrame;
-import javax.swing.JLayeredPane;
-import javax.swing.JPanel;
-
 import DomaineVoiture.Route;
 import DomaineVoiture.Voiture;
+
+import javax.swing.*;
+import java.awt.*;
+import java.util.Observable;
+import java.util.Observer;
 
 public class IHMVoiture extends JFrame implements Observer{
 
@@ -26,7 +17,7 @@ public class IHMVoiture extends JFrame implements Observer{
 	
 	private void initGraphique() {
 		this.setTitle("Simulateur de Voiture");
-		this.setSize(505, 505);
+		this.setSize(805, 505);
 
 		this.maCommandeVoiture = new CommandeVoiture(this, maVoiture);
 
@@ -77,9 +68,19 @@ public class IHMVoiture extends JFrame implements Observer{
 
 	private void dessinerVoiture(Graphics contexteGraphique) {
 		int xMetres = maVoiture.getX();
+        int yMetres = maVoiture.getY();
+        int lar=0, lon =0;
 		int xPixel = calculerPositionPixels(xMetres);
+        int yPixel = calculerPositionPixels(yMetres);
         contexteGraphique.setColor(Color.red);
-		contexteGraphique.fillRect(xPixel, 300, 30, 15);
+        if(maVoiture.getDirectionEnDegres()==0 || maVoiture.getDirectionEnDegres()==180){
+            lar = 30;
+            lon = 15;
+        } else {
+            lar = 15;
+            lon = 30;
+        }
+		contexteGraphique.fillRect(xPixel, yPixel, lar, lon);
 	}
 
     private void dessinerRoute1(Graphics contexteGraphique) {

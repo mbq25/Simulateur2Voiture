@@ -14,8 +14,8 @@ public class ProtoSimu {
 
 	public static void main(String[] args) {
 
-		final Voiture maVoiture = new Voiture (100, 0, 10);
-        final Route maRoute = new Route (505, 100);
+		final Voiture maVoiture = new Voiture (100, 550, 10);
+        final Route maRoute = new Route (805, 100);
 		IHMVoiture monTriangle = new IHMVoiture(maVoiture, maRoute);
 		
 		Timer timerAvancer = new Timer(dureeUneSecondeEnMilliSecondes, new ActionListener() {
